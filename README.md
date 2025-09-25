@@ -62,7 +62,6 @@ The readme.md file located in the [/TeamCode/src/main/java/org/firstinspires/ftc
 ## Version 11.0 (20250827-105138)
 
 ### Enhancements
-
 * OnBotJava now has the concept of a project.  
   A project is a collection of related files.  A project may be chosen by selecting 'Example Project'
   from the 'File type:' dropdown.  Doing so will populate the dropdown to the immediate right with 
