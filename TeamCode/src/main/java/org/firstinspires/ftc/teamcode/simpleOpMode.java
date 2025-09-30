@@ -15,13 +15,38 @@ public class simpleOpMode extends LinearOpMode {
 public void runOpMode() {
 
 
-    leftFrontDrive = hardwareMap.get(DcMotor.class, "leftFrontDrive");
+    leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
 
-    leftBackDrive = hardwareMap.get(DcMotor.class, "leftBackDrive");
+    leftBackDrive = hardwareMap.get(DcMotor.class, "BL");
 
-    rightFrontDrive = hardwareMap.get(DcMotor.class, "rightFrontDrive");
+    rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
 
-    rightBackDrive = hardwareMap.get(DcMotor.class, "rightBackDrive");
+    rightBackDrive = hardwareMap.get(DcMotor.class, "BR");
+
+
+
+waitForStart();
+
+while (opModeIsActive()) {
+
+   int speed;
+   if(gamepad1.left_stick_button) {
+       speed = 1;
+   }
+    else {
+        speed = 0;
+   }
+    leftFrontDrive.setPower(speed);
+    leftBackDrive.setPower(speed);
+    rightFrontDrive.setPower(speed);
+    rightBackDrive.setPower(speed );
+}
+
+
+
+
+
+
 }
 
 }
