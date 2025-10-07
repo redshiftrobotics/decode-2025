@@ -1,13 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+@TeleOp(name="hunter2", group="Linear OpMode")
 public class simpleOpMode extends LinearOpMode {
     DcMotor leftFrontDrive;
     DcMotor leftBackDrive;
     DcMotor rightFrontDrive;
     DcMotor rightBackDrive;
+
 @Override
 public void runOpMode() {
 
