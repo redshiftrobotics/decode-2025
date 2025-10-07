@@ -4,13 +4,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class simpleOpMode extends LinearOpMode {
-
     DcMotor leftFrontDrive;
     DcMotor leftBackDrive;
     DcMotor rightFrontDrive;
     DcMotor rightBackDrive;
-
-
 @Override
 public void runOpMode() {
 
