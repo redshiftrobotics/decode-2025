@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Test Op Mode")
+@TeleOp(name = "Test Op Mode foooooo")
 public class testOpMode extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
