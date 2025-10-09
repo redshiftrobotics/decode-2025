@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "Test Op Mode foooooo")
 public class testOpMode extends LinearOpMode {
-
     private final ElapsedTime runtime = new ElapsedTime();
 
     private DcMotor leftFrontDrive;
