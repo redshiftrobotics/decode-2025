@@ -36,7 +36,7 @@ public class Automode1 extends LinearOpMode {
             telemetry.addData("Status", "Run Time: %s", runtime.toString());
 
             // New movement.
-            waitSeconds(10); 
+            waitSeconds(10);
 
             driveForwardInches(20);
 
