@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import androidx.core.math.MathUtils;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -52,7 +54,7 @@ public class simpleOpMode extends LinearOpMode {
                     throwerSpeed = 0;
                 }
                 else{
-                    throwerSpeed = 0.5F;
+                    throwerSpeed = 0.8F;
                 }
                 updateMotors(0,0,throwerSpeed);
             }
@@ -66,8 +68,8 @@ public class simpleOpMode extends LinearOpMode {
 }
 
     private void updateMotors(float rightSpeed, float leftSpeed, float throwerSpeed) {
-        rightFrontDrive.setPower(rightSpeed);
-        leftFrontDrive.setPower(leftSpeed);
+        rightFrontDrive.setPower(MathUtils.clamp(rightSpeed, 0.02, 1));
+        leftFrontDrive.setPower(MathUtils.clamp(leftSpeed, 0.02, 1));
         thrower.setPower(throwerSpeed);
     }
 
