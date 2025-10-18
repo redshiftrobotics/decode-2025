@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "hunter3")
+@TeleOp(name = "hunter4")
 public class simpleOpMode extends LinearOpMode {
 
     DcMotor leftFrontDrive;
@@ -26,6 +26,8 @@ public class simpleOpMode extends LinearOpMode {
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
         thrower = hardwareMap.get(DcMotor.class, "T");
+        leftStopper = hardwareMap.get(Servo.class, "LS");
+        rightStopper = hardwareMap.get(Servo.class,"RS");
 
 //        leftStopper = hardwareMap.get(Servo.class, "LS");
 //        rightStopper = hardwareMap.get(Servo.class, "RS");
@@ -42,25 +44,35 @@ public class simpleOpMode extends LinearOpMode {
         float throwerSpeed = 0;
         float rightSpeed = 0;
         float leftSpeed = 0;
+        boolean firing = false;
         while (opModeIsActive()) {
 
             rightSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
             leftSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
-
-            telemetry.addData("rightSpeed:", rightSpeed);
-            telemetry.addData("leftSpeed", leftSpeed);
-            telemetry.update();
+            if (gamepad1.left_stick_x > 0){
+                rightSpeed = rightSpeed - gamepad1.left_stick_x;
+            }
+            if (gamepad1.left_stick_x < 0){
+                leftSpeed = leftSpeed + gamepad1.left_stick_x;
+            }
 
             if(gamepad1.xWasPressed()){
                 if(throwerSpeed != 0) {
                     throwerSpeed = 0;
                 }
                 else{
-                    throwerSpeed = 0.8F;
+                    throwerSpeed = 0.6F;
                 }
                 
             }
-            //
+            if(gamepad1.rightBumperWasPressed()){
+                fire();
+                firing = true;
+            }
+            else if (gamepad1.rightBumperWasReleased()){
+                firing = false;
+            }
+
             if (leftSpeed < 0) {
                 leftFrontDrive.setPower(-MathUtils.clamp(leftSpeed, -1, 0.98));
             }
@@ -75,6 +87,21 @@ public class simpleOpMode extends LinearOpMode {
                 rightFrontDrive.setPower(MathUtils.clamp(Math.abs(rightSpeed), 0.02, 1));
             }
             thrower.setPower(throwerSpeed);
+            telemetry.addData("rightSpeed:", rightSpeed);
+            telemetry.addData("leftSpeed:", leftSpeed);
+            telemetry.addData("direction:", gamepad1.left_stick_x);
+            telemetry.addData("firing", firing);
+            telemetry.update();
+        }
+    }
+    public void fire() {
+        if(leftStopper.getPosition() >1 | rightStopper.getPosition() <1){
+            leftStopper.setPosition(0);
+            rightStopper.setPosition(1);
+        }
+        else{
+            leftStopper.setPosition(1);
+            rightStopper.setPosition(0);
         }
     }
 }
