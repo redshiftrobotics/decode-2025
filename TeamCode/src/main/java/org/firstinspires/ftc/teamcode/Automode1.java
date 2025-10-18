@@ -16,35 +16,63 @@ public class Automode1 extends LinearOpMode {
 
     private DcMotor leftFrontDrive;
     private DcMotor rightFrontDrive;
+    private DcMotor leftBackDrive;
+    private DcMotor rightBackDrive;
 
+    //Function for driving forward
+    public void DriveForward(double power, long durationMillis) {
+    //Setting motor power
+        leftFrontDrive.setpower(power);
+        rightFrontDrive.setpower(power);
+        leftBackDrive.setpower(power);
+        rightBackDrive.setpower(power);
 
+    try{
+        Thread.sleep(durationMillis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Autonomous drive interrupted: " + e.getMessage());
+        }
+
+        // Stop the motors
+        stopMotors();
+    }
+    //Function for stopping the motors
+    private void StopMotors() {
+        leftFrontDrive.setpower(0.0);
+        rightFrontDrive.setpower(0.0);
+        leftBackDrive.setpower(0.0);
+        rightBackDrive.setpower(0.0);
+    }
+
+    
 
     @Override
-    public void runOpMode() {
-        leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
-        rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
+     public void runOpMode() {
+     leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
+      rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
 
 
-        telemetry.addData("Status", "Initialized").setRetained(true);
-        telemetry.update();
+     telemetry.addData("Status", "Initialized").setRetained(true);
+       telemetry.update();
 
-        waitForStart();
-        runtime.reset();
+      waitForStart();
+   runtime.reset();
 
-        if (opModeIsActive()) {
+    if (opModeIsActive()) {
 
             telemetry.addData("Status", "Run Time: %s", runtime.toString());
 
-            // New movement.
-            waitSeconds(10);
+            New movement.
+           waitSeconds(10);
 
-            driveForwardInches(20);
+           driveForwardInches(20);
 
         }
     }
 
     public static void waitSeconds(double seconds) {
-        try {
+      try {
             Thread.sleep(Math.round(seconds * 1000.0));
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -62,7 +90,7 @@ public class Automode1 extends LinearOpMode {
         leftFrontDrive.setPower(1);
         rightFrontDrive.setPower(1);
 
-        // when five seconds have elased, turn off motors.
+        // when five seconds have elapsed, turn off motors.
         double currentMillis = time1.milliseconds(); // Or a similar getter
         //double newMillis = currentMillis + (5 * 1000L); // Add 5 seconds (5000 milliseconds)
         //ElapsedTime time2 = new ElapsedTime(newMillis); // Or a similar setter
