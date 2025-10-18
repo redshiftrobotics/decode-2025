@@ -62,14 +62,14 @@ public class simpleOpMode extends LinearOpMode {
             }
             //
             if (leftSpeed < 0) {
-                leftFrontDrive.setPower(-MathUtils.clamp(leftSpeed, 0.02, 1));
+                leftFrontDrive.setPower(-MathUtils.clamp(leftSpeed, -1, 0.98));
             }
             else{
                 leftFrontDrive.setPower(-MathUtils.clamp(Math.abs(leftSpeed), 0.02, 1));
             }
 
             if (rightSpeed < 0) {
-                rightFrontDrive.setPower(MathUtils.clamp(rightSpeed, 0.02, 1));
+                rightFrontDrive.setPower(MathUtils.clamp(rightSpeed, -1, 0.98));
             }
             else{
                 rightFrontDrive.setPower(MathUtils.clamp(Math.abs(rightSpeed), 0.02, 1));
