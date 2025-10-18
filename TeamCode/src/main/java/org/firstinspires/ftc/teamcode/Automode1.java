@@ -73,7 +73,7 @@ public class Automode1 extends LinearOpMode {
         FourWheelerAutonomous Robot = new FourWheelerAutonomous(FL, FR, BL, BR);
 
         // Drive forward at 30% power for 5 seconds
-        Robot.driveForward(0.3, 2000);
+        Robot.DriveForward(0.3, 2000);
     }
 }
 
