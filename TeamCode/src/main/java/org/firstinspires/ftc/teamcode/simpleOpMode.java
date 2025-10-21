@@ -56,14 +56,11 @@ public class simpleOpMode extends LinearOpMode {
                 leftSpeed = leftSpeed + gamepad1.left_stick_x;
             }
 
-            if(gamepad1.xWasPressed()){
-                if(throwerSpeed != 0) {
-                    throwerSpeed = 0;
-                }
-                else{
-                    throwerSpeed = 0.6F;
-                }
-                
+            if(gamepad1.x){
+                throwerSpeed = gamepad1.right_stick_y;
+            }
+            if(gamepad1.b){
+                throwerSpeed = 0;
             }
             if(gamepad1.rightBumperWasPressed()){
                 fire();
