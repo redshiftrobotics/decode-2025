@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "hunter4")
+@TeleOp(name = "hunter5")
 public class simpleOpMode extends LinearOpMode {
 
     DcMotor leftFrontDrive;
@@ -56,10 +56,10 @@ public class simpleOpMode extends LinearOpMode {
                 leftSpeed = leftSpeed + gamepad1.left_stick_x;
             }
 
-            if(gamepad1.x){
-                throwerSpeed = gamepad1.right_stick_y;
+            if(gamepad1.squareWasPressed()){
+                throwerSpeed = 0.1F;
             }
-            if(gamepad1.b){
+            if(gamepad1.bWasPressed()){
                 throwerSpeed = 0;
             }
             if(gamepad1.rightBumperWasPressed()){
@@ -86,6 +86,7 @@ public class simpleOpMode extends LinearOpMode {
             leftFrontDrive.setPower(leftSpeed);
             rightFrontDrive.setPower(rightSpeed);
             thrower.setPower(throwerSpeed);
+            telemetry.addData("throwerSpeed", throwerSpeed);
             telemetry.addData("rightSpeed:", rightSpeed);
             telemetry.addData("leftSpeed:", leftSpeed);
             telemetry.addData("direction:", gamepad1.left_stick_x);
@@ -94,13 +95,10 @@ public class simpleOpMode extends LinearOpMode {
         }
     }
     public void fire() {
-        if(leftStopper.getPosition() >1 | rightStopper.getPosition() <1){
-            leftStopper.setPosition(0);
-            rightStopper.setPosition(1);
-        }
-        else{
-            leftStopper.setPosition(1);
-            rightStopper.setPosition(0);
-        }
+        rightStopper.setPosition(0.2);
+        leftStopper.setPosition(0);
+        sleep(1);
+        rightStopper.setPosition(0);
+        leftStopper.setPosition(0.2);
     }
 }
