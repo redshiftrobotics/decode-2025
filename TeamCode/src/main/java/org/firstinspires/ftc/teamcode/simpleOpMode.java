@@ -71,18 +71,20 @@ public class simpleOpMode extends LinearOpMode {
             }
 
             if (leftSpeed < 0) {
-                leftFrontDrive.setPower(-MathUtils.clamp(leftSpeed, -1, 0.98));
+                leftSpeed = (float)-MathUtils.clamp(leftSpeed, -1, 0.98);
             }
             else{
-                leftFrontDrive.setPower(-MathUtils.clamp(Math.abs(leftSpeed), 0.02, 1));
+                leftSpeed = (float)-MathUtils.clamp(Math.abs(leftSpeed), 0.02, 1);
             }
 
             if (rightSpeed < 0) {
-                rightFrontDrive.setPower(MathUtils.clamp(rightSpeed, -1, 0.98));
+                rightSpeed = (float)MathUtils.clamp(rightSpeed, -1, 0.98);
             }
             else{
-                rightFrontDrive.setPower(MathUtils.clamp(Math.abs(rightSpeed), 0.02, 1));
+                rightSpeed = (float)MathUtils.clamp(Math.abs(rightSpeed), 0.02, 1);
             }
+            leftFrontDrive.setPower(leftSpeed);
+            rightFrontDrive.setPower(rightSpeed);
             thrower.setPower(throwerSpeed);
             telemetry.addData("rightSpeed:", rightSpeed);
             telemetry.addData("leftSpeed:", leftSpeed);
