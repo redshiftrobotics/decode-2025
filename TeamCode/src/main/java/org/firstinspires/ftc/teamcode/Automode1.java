@@ -26,12 +26,15 @@ public class Automode1 extends LinearOpMode {
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
 
+        // Wait for motors to start
+        waitForStart();
+
         // turn the motors on.
         startMotors();
 
 
         // go forward for 3 seconds.
-        double targetEnd = runtime.milliseconds() + 3000;
+        double targetEnd = runtime.milliseconds() + 1000;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -53,8 +56,8 @@ public class Automode1 extends LinearOpMode {
     }
 
         private void startMotors() {
-        leftFrontDrive.setPower(1.0);
-        rightFrontDrive.setPower(1.0);
+        leftFrontDrive.setPower(-0.5);
+        rightFrontDrive.setPower(0.5);
             return;
         }
         private void stopMotors() {
