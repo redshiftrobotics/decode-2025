@@ -95,10 +95,13 @@ public class simpleOpMode extends LinearOpMode {
         }
     }
     public void fire() {
-        rightStopper.setPosition(TeleOpConstants.STOPPER_DISTANCE);
-        leftStopper.setPosition(0);
+        rightStopper.setDirection(Servo.Direction.FORWARD);
+        leftStopper.setDirection(Servo.Direction.REVERSE);
         sleep(TeleOpConstants.STOPPER_DELAY);
-        rightStopper.setPosition(0);
-        leftStopper.setPosition(TeleOpConstants.STOPPER_DISTANCE);
+        rightStopper.setDirection(Servo.Direction.REVERSE);
+        leftStopper.setDirection(Servo.Direction.FORWARD);
+        sleep(TeleOpConstants.STOPPER_DELAY);
+        rightStopper.setPosition(rightStopper.getPosition());
+        leftStopper.setPosition(leftStopper.getPosition());
     }
 }

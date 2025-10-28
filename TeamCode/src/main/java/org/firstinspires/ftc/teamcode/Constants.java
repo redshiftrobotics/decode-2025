@@ -4,8 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class Constants {
     public static class TeleOpConstants {
         public static final float THROWER_POWER = 0.1F;
-        public static final double STOPPER_DISTANCE = -0.4;
-        public static final int STOPPER_DELAY = 100;
+        public static final int STOPPER_DELAY = 250;
     }
     public static class AutoConstants {
 
