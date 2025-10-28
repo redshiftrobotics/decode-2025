@@ -2,16 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
-
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 @Autonomous(name = "Automode1")
-public class Automode1 extends LinearOpMode {
+public class AutomodeAhh2 extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -39,10 +34,19 @@ public class Automode1 extends LinearOpMode {
         }
         // ElapsedTime endtime = runtime.
         // Duration additionalTime = Duration.ofMillis(3000);
-
         // turn the motors off.
-        stopMotors();   
+        stopMotors();
 
+        turnMotorsLeft();
+
+        targetEnd = runtime.milliseconds() + 1000;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
+        // ElapsedTime endtime = runtime.
+        // Duration additionalTime = Duration.ofMillis(3000);
+        // turn the motors off.
+        stopMotors();
     }
 
 
@@ -65,9 +69,17 @@ public class Automode1 extends LinearOpMode {
         rightFrontDrive.setPower(0.0);
         return;
     }
-
+    private void turnMotorsRight() {
+        leftFrontDrive.setPower(-0.5);
+        rightFrontDrive.setPower(0.0);
+        return;
+    }
+    private void turnMotorsLeft() {
+        leftFrontDrive.setPower(0.0);
+        rightFrontDrive.setPower(0.5);
+        return;
+    }
 }
-
 
 
 
