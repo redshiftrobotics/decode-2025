@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-
+import org.firstinspires.ftc.teamcode.Constants.TeleOpConstants;
 @TeleOp(name = "hunter5")
 public class simpleOpMode extends LinearOpMode {
 
@@ -56,10 +56,10 @@ public class simpleOpMode extends LinearOpMode {
                 leftSpeed = leftSpeed + gamepad1.left_stick_x;
             }
 
-            if(gamepad1.squareWasPressed()){
-                throwerSpeed = 0.1F;
+            if(gamepad1.xWasPressed() & throwerSpeed < TeleOpConstants.THROWER_POWER){
+                throwerSpeed = TeleOpConstants.THROWER_POWER;
             }
-            if(gamepad1.bWasPressed()){
+            else if(gamepad1.xWasPressed()){
                 throwerSpeed = 0;
             }
             if(gamepad1.rightBumperWasPressed()){
@@ -95,10 +95,10 @@ public class simpleOpMode extends LinearOpMode {
         }
     }
     public void fire() {
-        rightStopper.setPosition(0.4);
+        rightStopper.setPosition(TeleOpConstants.STOPPER_DISTANCE);
         leftStopper.setPosition(0);
-        sleep(100);
+        sleep(TeleOpConstants.STOPPER_DELAY);
         rightStopper.setPosition(0);
-        leftStopper.setPosition(0.4);
+        leftStopper.setPosition(TeleOpConstants.STOPPER_DISTANCE);
     }
 }

@@ -2,7 +2,11 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class Constants {
-
+    public static class TeleOpConstants {
+        public static final float THROWER_POWER = 0.1F;
+        public static final double STOPPER_DISTANCE = -0.4;
+        public static final int STOPPER_DELAY = 100;
+    }
     public static class AutoConstants {
 
         // How far the robot will keep on rolling after braking. Gotten though trial and error and will change based on AUTO_DRIVE_POWER, robot weight, etc.
