@@ -97,7 +97,7 @@ public class simpleOpMode extends LinearOpMode {
     public void fire() {
         rightStopper.setPosition(0.4);
         leftStopper.setPosition(0);
-        sleep(25);
+        sleep(100);
         rightStopper.setPosition(0);
         leftStopper.setPosition(0.4);
     }
