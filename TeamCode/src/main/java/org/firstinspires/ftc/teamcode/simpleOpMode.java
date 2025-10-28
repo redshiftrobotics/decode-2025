@@ -5,7 +5,7 @@ import androidx.core.math.MathUtils;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 import org.firstinspires.ftc.teamcode.Constants.TeleOpConstants;
 @TeleOp(name = "hunter5")
 public class simpleOpMode extends LinearOpMode {
@@ -13,8 +13,8 @@ public class simpleOpMode extends LinearOpMode {
     DcMotor leftFrontDrive;
     DcMotor rightFrontDrive;
     DcMotor thrower;
-    Servo leftStopper;
-    Servo rightStopper;
+    CRServo leftStopper;
+    CRServo rightStopper;
 
 
     @Override
@@ -26,8 +26,8 @@ public class simpleOpMode extends LinearOpMode {
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
         thrower = hardwareMap.get(DcMotor.class, "T");
-        leftStopper = hardwareMap.get(Servo.class, "LS");
-        rightStopper = hardwareMap.get(Servo.class,"RS");
+        leftStopper = hardwareMap.get(CRServo.class, "LS");
+        rightStopper = hardwareMap.get(CRServo.class,"RS");
 
 //        leftStopper = hardwareMap.get(Servo.class, "LS");
 //        rightStopper = hardwareMap.get(Servo.class, "RS");
@@ -95,13 +95,10 @@ public class simpleOpMode extends LinearOpMode {
         }
     }
     public void fire() {
-        rightStopper.setDirection(Servo.Direction.FORWARD);
-        leftStopper.setDirection(Servo.Direction.REVERSE);
+        rightStopper.setPower(1);
+        leftStopper.setPower(-1);
         sleep(TeleOpConstants.STOPPER_DELAY);
-        rightStopper.setDirection(Servo.Direction.REVERSE);
-        leftStopper.setDirection(Servo.Direction.FORWARD);
-        sleep(TeleOpConstants.STOPPER_DELAY);
-        rightStopper.setPosition(rightStopper.getPosition());
-        leftStopper.setPosition(leftStopper.getPosition());
+        rightStopper.setPower(0);
+        leftStopper.setPower(0);
     }
 }
