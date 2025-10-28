@@ -96,12 +96,9 @@ public class simpleOpMode extends LinearOpMode {
     }
     public void fire() {
         rightStopper.setPower(1);
-        leftStopper.setPower(0);
+        leftStopper.setPower(-1);
         sleep(TeleOpConstants.STOPPER_DELAY);
         rightStopper.setPower(0);
         leftStopper.setPower(0);
-        sleep(TeleOpConstants.STOPPER_DELAY);
-        rightStopper.setPower(0);
-        leftStopper.setPower(1);
     }
 }
