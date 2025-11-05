@@ -57,16 +57,16 @@ public class simpleOpMode extends LinearOpMode {
                 leftSpeed = leftSpeed + gamepad1.left_stick_x;
             }
 
-            if(gamepad1.xWasPressed() & throwerSpeed < TeleOpConstants.THROWER_POWER){
+            if(gamepad1.xWasPressed()){
                 throwerSpeed = TeleOpConstants.THROWER_POWER;
             }
-            else if(gamepad1.xWasPressed()){
+            if(gamepad1.bWasPressed()){
                 throwerSpeed = 0;
             }
-            if (gamepad1.yWasPressed() & !slowMode){
+            if (gamepad1.yWasPressed()){
                 slowMode = true;
             }
-            else if (gamepad1.yWasPressed()){
+            if (gamepad1.aWasPressed()){
                 slowMode = false;
             }
             if(gamepad1.rightBumperWasPressed()){
@@ -93,13 +93,12 @@ public class simpleOpMode extends LinearOpMode {
             if (!slowMode) {
                 leftFrontDrive.setPower(leftSpeed);
                 rightFrontDrive.setPower(rightSpeed);
-                thrower.setPower(throwerSpeed);
             }
             else{
                 leftFrontDrive.setPower(leftSpeed * TeleOpConstants.SLOW_MODE);
                 rightFrontDrive.setPower(rightSpeed * TeleOpConstants.SLOW_MODE);
-                thrower.setPower(throwerSpeed * TeleOpConstants.SLOW_MODE);
             }
+            thrower.setPower(throwerSpeed);
             telemetry.addData("throwerSpeed", throwerSpeed);
             telemetry.addData("rightSpeed:", rightSpeed);
             telemetry.addData("leftSpeed:", leftSpeed);
