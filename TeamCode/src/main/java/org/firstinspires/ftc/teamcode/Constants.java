@@ -5,6 +5,7 @@ public class Constants {
     public static class TeleOpConstants {
         public static final float THROWER_POWER = 0.1F;
         public static final int STOPPER_DELAY = 250;
+        public static final double SLOW_MODE = 0.25;
     }
     public static class AutoConstants {
 

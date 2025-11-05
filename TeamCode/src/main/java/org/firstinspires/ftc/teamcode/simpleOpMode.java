@@ -45,6 +45,7 @@ public class simpleOpMode extends LinearOpMode {
         float rightSpeed = 0;
         float leftSpeed = 0;
         boolean firing = false;
+        boolean slowMode = false;
         while (opModeIsActive()) {
 
             rightSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
@@ -61,6 +62,12 @@ public class simpleOpMode extends LinearOpMode {
             }
             else if(gamepad1.xWasPressed()){
                 throwerSpeed = 0;
+            }
+            if (gamepad1.yWasPressed() & !slowMode){
+                slowMode = true;
+            }
+            else if (gamepad1.yWasPressed()){
+                slowMode = false;
             }
             if(gamepad1.rightBumperWasPressed()){
                 fire();
@@ -83,15 +90,21 @@ public class simpleOpMode extends LinearOpMode {
             else{
                 rightSpeed = (float)MathUtils.clamp(Math.abs(rightSpeed), 0.02, 1);
             }
-            leftFrontDrive.setPower(leftSpeed);
-            rightFrontDrive.setPower(rightSpeed);
-            thrower.setPower(throwerSpeed);
+            if (!slowMode) {
+                leftFrontDrive.setPower(leftSpeed);
+                rightFrontDrive.setPower(rightSpeed);
+                thrower.setPower(throwerSpeed);
+            }
+            else{
+                leftFrontDrive.setPower(leftSpeed * TeleOpConstants.SLOW_MODE);
+                rightFrontDrive.setPower(rightSpeed * TeleOpConstants.SLOW_MODE);
+                thrower.setPower(throwerSpeed * TeleOpConstants.SLOW_MODE);
+            }
             telemetry.addData("throwerSpeed", throwerSpeed);
             telemetry.addData("rightSpeed:", rightSpeed);
             telemetry.addData("leftSpeed:", leftSpeed);
             telemetry.addData("direction:", gamepad1.left_stick_x);
             telemetry.addData("firing", firing);
-            telemetry.update();
         }
     }
     public void fire() {
