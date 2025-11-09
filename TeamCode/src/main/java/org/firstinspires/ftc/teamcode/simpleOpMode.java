@@ -16,7 +16,7 @@ public class simpleOpMode extends LinearOpMode {
     CRServo leftStopper;
     CRServo rightStopper;
 
-
+    public boolean firing = false;
     @Override
     public void runOpMode() {
 
@@ -44,7 +44,6 @@ public class simpleOpMode extends LinearOpMode {
         float throwerSpeed = 0;
         float rightSpeed = 0;
         float leftSpeed = 0;
-        boolean firing = false;
         boolean slowMode = false;
         throwerSpeed = TeleOpConstants.THROWER_POWER;
         while (opModeIsActive()) {
@@ -102,10 +101,12 @@ public class simpleOpMode extends LinearOpMode {
         }
     }
     public void fire() {
+        firing = true;
         rightStopper.setPower(-1);
         leftStopper.setPower(1);
         sleep(TeleOpConstants.STOPPER_DELAY);
         rightStopper.setPower(0);
         leftStopper.setPower(0);
+        firing = false;
     }
 }
