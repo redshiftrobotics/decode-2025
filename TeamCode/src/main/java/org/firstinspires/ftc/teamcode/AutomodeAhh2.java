@@ -15,15 +15,29 @@ public class AutomodeAhh2 extends LinearOpMode {
 
     private DcMotor thrower;
 
+    private CRServo rightStopper;
+
+    private CRServo leftStopper;
+
 
     @Override
     public void runOpMode() {
 
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
+        thrower = hardwareMap.get(DcMotor.class, "T");
+        rightStopper = hardwareMap.get(CRServo.class, "RS");
+        leftStopper = hardwareMap.get(CRServo.class, "LS");
 
         // Wait for motors to start
         waitForStart();
+
+        stopMotors();
+
+        targetEnd = runtime.milliseconds() + 400;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
 
         // turn the motors on.
         startMotors();
@@ -40,7 +54,7 @@ public class AutomodeAhh2 extends LinearOpMode {
         stopMotors();
 
         // turn left for 1.3 seconds.
-        turnMotorsLeft();
+        turnMotorsRight();
 
         targetEnd = runtime.milliseconds() + 1300;
         while (runtime.milliseconds() < targetEnd) {
@@ -56,9 +70,9 @@ public class AutomodeAhh2 extends LinearOpMode {
         }
 
         // turn right for 1 second.
-        turnMotorsRight();
+        turnMotorsleft();
 
-        targetEnd = runtime.milliseconds() + 1000;
+        targetEnd = runtime.milliseconds() + 980;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing
         }
@@ -66,7 +80,7 @@ public class AutomodeAhh2 extends LinearOpMode {
         // go forward for 250 milliseconds.
         startMotors();
 
-        targetEnd = runtime.milliseconds() + 250;
+        targetEnd = runtime.milliseconds() + 150;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing
         }
@@ -74,7 +88,7 @@ public class AutomodeAhh2 extends LinearOpMode {
         // start thrower for 150 milliseconds.
         startThrower();
 
-        targetEnd = runtime.milliseconds() + 150;
+        targetEnd = runtime.milliseconds() + 2000;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing
         }
