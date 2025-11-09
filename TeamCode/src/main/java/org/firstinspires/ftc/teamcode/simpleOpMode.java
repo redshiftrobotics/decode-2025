@@ -68,10 +68,6 @@ public class simpleOpMode extends LinearOpMode {
             }
             if(gamepad1.rightBumperWasPressed()){
                 fire();
-                firing = true;
-            }
-            else if (gamepad1.rightBumperWasReleased()){
-                firing = false;
             }
 
             if (leftSpeed < 0) {
