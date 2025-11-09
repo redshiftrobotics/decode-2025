@@ -47,7 +47,7 @@ public class simpleOpMode extends LinearOpMode {
         boolean firing = false;
         boolean slowMode = false;
         while (opModeIsActive()) {
-
+            throwerSpeed = TeleOpConstants.THROWER_POWER;
             rightSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
             leftSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
             if (gamepad1.left_stick_x > 0){
@@ -57,9 +57,6 @@ public class simpleOpMode extends LinearOpMode {
                 leftSpeed = leftSpeed + gamepad1.left_stick_x;
             }
 
-            if(gamepad1.xWasPressed()){
-                throwerSpeed = TeleOpConstants.THROWER_POWER;
-            }
             if(gamepad1.bWasPressed()){
                 throwerSpeed = 0;
             }
