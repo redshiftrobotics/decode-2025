@@ -88,14 +88,35 @@ public class AutomodeAhh2 extends LinearOpMode {
         // start thrower for 150 milliseconds.
         startThrower();
 
-        targetEnd = runtime.milliseconds() + 2000;
+        targetEnd = runtime.milliseconds() + 2500;
         while (runtime.milliseconds() < targetEnd) {
-            // do nothing
+            startRightAndLeftStopper();
         }
         // ElapsedTime endtime = runtime.
         // Duration additionalTime = Duration.ofMillis(3000);
         // turn the motors off.
         stopMotors();
+        
+        targetEnd = runtime.milliseconds() + 1000;
+        while (runtime.milliseconds() < targetEnd) {
+            
+        }
+        backMotorleft();
+
+        targetEnd = runtime.milliseconds() + 350;
+        while (runtime.milliseconds() < targetEnd) {
+            
+        }
+
+        backMotors();
+
+        targetEnd = runtime.milliseconds() + 1050;
+        while (runtime.milliseconds() < targetEnd) {
+            
+        }
+
+
+
     }
 
 
@@ -130,6 +151,27 @@ public class AutomodeAhh2 extends LinearOpMode {
     }
     private void startThrower() {
         thrower.setPower(2.0);
+        return;
+    }
+    private void startRightAndLeftStopper() {
+        rightStopper.setPower();
+        leftStopper.setPower();
+        return;
+    }
+    private void backMotorleft() {
+        leftFrontDrive.setPower(0.0);
+        rightFrontDrive.setPower(-0.8);
+        return;
+    }
+    private void backMotorRight() {
+        leftFrontDrive.setPower(0.8);
+        rightFrontDrive.setPower(0.0);
+        return;
+    }
+    private void backMotors() {
+        leftFrontDrive.setPower(0.5);
+        rightFrontDrive.setPower(-0.5);
+        return;
     }
 }
 
