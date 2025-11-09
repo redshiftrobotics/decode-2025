@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -15,9 +16,9 @@ public class AutomodeAhh2 extends LinearOpMode {
 
     private DcMotor thrower;
 
-    private CRServo rightStopper;
+    //private CRServo rightStopper;
 
-    private CRServo leftStopper;
+    //private CRServo leftStopper;
 
 
     @Override
@@ -26,18 +27,12 @@ public class AutomodeAhh2 extends LinearOpMode {
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
         thrower = hardwareMap.get(DcMotor.class, "T");
-        rightStopper = hardwareMap.get(CRServo.class, "RS");
-        leftStopper = hardwareMap.get(CRServo.class, "LS");
+        //rightStopper = hardwareMap.get(CRServo.class, "RS");
+       // leftStopper = hardwareMap.get(CRServo.class, "LS");
 
         // Wait for motors to start
         waitForStart();
 
-        stopMotors();
-
-        targetEnd = runtime.milliseconds() + 400;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
 
         // turn the motors on.
         startMotors();
@@ -70,7 +65,7 @@ public class AutomodeAhh2 extends LinearOpMode {
         }
 
         // turn right for 1 second.
-        turnMotorsleft();
+        turnMotorsLeft();
 
         targetEnd = runtime.milliseconds() + 980;
         while (runtime.milliseconds() < targetEnd) {
@@ -90,7 +85,7 @@ public class AutomodeAhh2 extends LinearOpMode {
 
         targetEnd = runtime.milliseconds() + 2500;
         while (runtime.milliseconds() < targetEnd) {
-            startRightAndLeftStopper();
+            //startRightAndLeftStopper();
         }
         // ElapsedTime endtime = runtime.
         // Duration additionalTime = Duration.ofMillis(3000);
@@ -101,7 +96,7 @@ public class AutomodeAhh2 extends LinearOpMode {
         while (runtime.milliseconds() < targetEnd) {
             
         }
-        backMotorleft();
+        backMotorLeft();
 
         targetEnd = runtime.milliseconds() + 350;
         while (runtime.milliseconds() < targetEnd) {
@@ -110,10 +105,19 @@ public class AutomodeAhh2 extends LinearOpMode {
 
         backMotors();
 
-        targetEnd = runtime.milliseconds() + 1050;
+        targetEnd = runtime.milliseconds() + 500;
         while (runtime.milliseconds() < targetEnd) {
             
         }
+
+        backMotorRight();
+
+        targetEnd = runtime.milliseconds() + 1100;
+        while (runtime.milliseconds() < targetEnd) {
+
+        }
+
+        stopMotors();
 
 
 
@@ -153,12 +157,12 @@ public class AutomodeAhh2 extends LinearOpMode {
         thrower.setPower(2.0);
         return;
     }
-    private void startRightAndLeftStopper() {
-        rightStopper.setPower();
-        leftStopper.setPower();
-        return;
-    }
-    private void backMotorleft() {
+    //private void startRightAndLeftStopper() {
+     //   rightStopper.setPower();
+      //  leftStopper.setPower();
+       // return;
+    //}
+    private void backMotorLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(-0.8);
         return;

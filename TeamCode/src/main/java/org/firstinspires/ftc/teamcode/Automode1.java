@@ -33,7 +33,7 @@ public class Automode1 extends LinearOpMode {
 
 
         // go forward for 1 seconds.
-        double targetEnd = runtime.milliseconds() + 1000;
+        double targetEnd = runtime.milliseconds() + 500;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
