@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -15,17 +16,22 @@ public class AutomodeAhh2 extends LinearOpMode {
 
     private DcMotor thrower;
 
+    private CRServo rightStopper;
+
+    private CRServo leftStopper;
 
     @Override
     public void runOpMode() {
 
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
+        thrower = hardwareMap.get(DcMotor.class, "T");
+        rightStopper = hardwareMap.get(CRServo.class, "RS");
+        leftStopper = hardwareMap.get(CRServo.class, "LS");
 
-        // Wait for motors to start
+        //wait for motors to start.
         waitForStart();
-
-        // turn the motors on.
+        //turn the motors on.
         startMotors();
 
 
@@ -39,42 +45,42 @@ public class AutomodeAhh2 extends LinearOpMode {
         // turn the motors off.
         stopMotors();
 
-        // turn left for 1.3 seconds.
-        turnMotorsLeft();
-
-        targetEnd = runtime.milliseconds() + 1300;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
-
-        // go forward for 0.5 seconds.
-        startMotors();
-
-        targetEnd = runtime.milliseconds() + 500;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
-
-        // turn right for 1 second.
+        // turn Right for 1.3 seconds.
         turnMotorsRight();
 
-        targetEnd = runtime.milliseconds() + 1000;
+        targetEnd = runtime.milliseconds() + 1100;
         while (runtime.milliseconds() < targetEnd) {
-            // do nothing
+            // do nothing.
         }
 
-        // go forward for 250 milliseconds.
+        // go forward for 0.1 seconds.
         startMotors();
 
-        targetEnd = runtime.milliseconds() + 250;
+        targetEnd = runtime.milliseconds() + 100;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
+
+        // turn left for 0.7 seconds.
+        turnMotorsLeft();
+
+        targetEnd = runtime.milliseconds() + 1100;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing
         }
 
-        // start thrower for 150 milliseconds.
+        // go forward for 150 milliseconds.
+        startMotors();
+
+        targetEnd = runtime.milliseconds() + 100;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing
+        }
+
+        // start thrower for 2 seconds.
         startThrower();
 
-        targetEnd = runtime.milliseconds() + 150;
+        targetEnd = runtime.milliseconds() + 2200;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing
         }
@@ -104,20 +110,26 @@ public class AutomodeAhh2 extends LinearOpMode {
         rightFrontDrive.setPower(0.0);
         return;
     }
+
     private void turnMotorsRight() {
         leftFrontDrive.setPower(-0.8);
         rightFrontDrive.setPower(0.0);
         return;
     }
+
     private void turnMotorsLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.8);
         return;
     }
+
     private void startThrower() {
-        thrower.setPower(2.0);
+        thrower.setPower(1.9);
+    }
+
+    private void turnRightAndLeftStopper() {
+        rightStopper.setPower(1.0);
+        leftStopper.setPower(1.0);
+        return;
     }
 }
-
-
-
