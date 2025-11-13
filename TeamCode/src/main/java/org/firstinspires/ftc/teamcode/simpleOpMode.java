@@ -16,7 +16,7 @@ public class simpleOpMode extends LinearOpMode {
     CRServo leftStopper;
     CRServo rightStopper;
 
-
+    public boolean firing = false;
     @Override
     public void runOpMode() {
 
@@ -44,10 +44,9 @@ public class simpleOpMode extends LinearOpMode {
         float throwerSpeed = 0;
         float rightSpeed = 0;
         float leftSpeed = 0;
-        boolean firing = false;
         boolean slowMode = false;
+        throwerSpeed = TeleOpConstants.THROWER_POWER;
         while (opModeIsActive()) {
-
             rightSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
             leftSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
             if (gamepad1.left_stick_x > 0){
@@ -56,8 +55,7 @@ public class simpleOpMode extends LinearOpMode {
             if (gamepad1.left_stick_x < 0){
                 leftSpeed = leftSpeed + gamepad1.left_stick_x;
             }
-
-            if(gamepad1.xWasPressed()){
+            if (gamepad1.xWasPressed()){
                 throwerSpeed = TeleOpConstants.THROWER_POWER;
             }
             if(gamepad1.bWasPressed()){
@@ -71,10 +69,6 @@ public class simpleOpMode extends LinearOpMode {
             }
             if(gamepad1.rightBumperWasPressed()){
                 fire();
-                firing = true;
-            }
-            else if (gamepad1.rightBumperWasReleased()){
-                firing = false;
             }
 
             if (leftSpeed < 0) {
@@ -107,10 +101,12 @@ public class simpleOpMode extends LinearOpMode {
         }
     }
     public void fire() {
+        firing = true;
         rightStopper.setPower(-1);
         leftStopper.setPower(1);
         sleep(TeleOpConstants.STOPPER_DELAY);
         rightStopper.setPower(0);
         leftStopper.setPower(0);
+        firing = false;
     }
 }
