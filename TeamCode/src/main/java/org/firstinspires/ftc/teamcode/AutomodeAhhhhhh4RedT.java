@@ -38,7 +38,7 @@ public class AutomodeAhhhhhh4RedT extends LinearOpMode {
 
 
         // go forward for 1 seconds.
-        double targetEnd = runtime.milliseconds() + 950;
+        double targetEnd = runtime.milliseconds() + 1500;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -52,7 +52,7 @@ public class AutomodeAhhhhhh4RedT extends LinearOpMode {
 
         startMotors();
 
-        targetEnd = runtime.milliseconds() + 600;
+        targetEnd = runtime.milliseconds() + 650;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
