@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Automode4Red")
-public class AutomodeAhhhhhh4RedT extends LinearOpMode {
+@Autonomous(name = "Automode3Blue")
+public class AutomodeAhhhhhh3BlueT extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -38,12 +38,12 @@ public class AutomodeAhhhhhh4RedT extends LinearOpMode {
 
 
         // go forward for 1 seconds.
-        double targetEnd = runtime.milliseconds() + 950;
+        double targetEnd = runtime.milliseconds() + 1500;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
-        turnMotorsRight();
+        turnMotorsLeft();
 
         targetEnd = runtime.milliseconds() + 1000;
         while (runtime.milliseconds() < targetEnd) {
@@ -52,7 +52,7 @@ public class AutomodeAhhhhhh4RedT extends LinearOpMode {
 
         startMotors();
 
-        targetEnd = runtime.milliseconds() + 600;
+        targetEnd = runtime.milliseconds() + 650; // change this at the last second. Need to test
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -61,11 +61,9 @@ public class AutomodeAhhhhhh4RedT extends LinearOpMode {
 
         targetEnd = runtime.milliseconds() + 2500;
         while (runtime.milliseconds() < targetEnd) {
-            fire();
-
-            fire();
-
-            fire();
+           fire();
+           fire();
+           fire();
         }
 
         backMotors();
@@ -75,16 +73,16 @@ public class AutomodeAhhhhhh4RedT extends LinearOpMode {
             // do nothing.
         }
 
-        backMotorRight();
+        backMotorLeft();
 
-        targetEnd = runtime.milliseconds() + 550;
+        targetEnd = runtime.milliseconds() + 600;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
         backMotors();
 
-        targetEnd= runtime.milliseconds() + 950;
+        targetEnd= runtime.milliseconds() + 1000;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -148,7 +146,8 @@ public class AutomodeAhhhhhh4RedT extends LinearOpMode {
         return;
 
     }
-    public void fire() {
+
+    private void fire() {
         rightStopper.setPower(-1);
         leftStopper.setPower(1);
     }
