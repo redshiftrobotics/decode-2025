@@ -121,4 +121,9 @@ public class Automode5BlueClose extends LinearOpMode {
         leftStopper.setPower(1);
         return;
     }
+    private void waitfire() {
+        rightStopper.setPower(0.0);
+        leftStopper.setPower(0.0);
+        return;
+    }
 }
