@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "Automode2")
-public class AutomodeAhh2 extends LinearOpMode {
+public class Automode2 extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -32,61 +32,18 @@ public class AutomodeAhh2 extends LinearOpMode {
         //wait for motors to start.
         waitForStart();
         //turn the motors on.
-        startMotors();
+        backMotors();
 
 
         // go forward for 1 seconds.
-        double targetEnd = runtime.milliseconds() + 1000;
+        double targetEnd = runtime.milliseconds() + 650;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
-        // ElapsedTime endtime = runtime.
-        // Duration additionalTime = Duration.ofMillis(3000);
-        // turn the motors off.
-        stopMotors();
+       
 
-        // turn Right for 1.3 seconds.
-        turnMotorsRight();
+        
 
-        targetEnd = runtime.milliseconds() + 1100;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
-
-        // go forward for 0.1 seconds.
-        startMotors();
-
-        targetEnd = runtime.milliseconds() + 100;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
-
-        // turn left for 0.7 seconds.
-        turnMotorsLeft();
-
-        targetEnd = runtime.milliseconds() + 1100;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing
-        }
-
-        // go forward for 150 milliseconds.
-        startMotors();
-
-        targetEnd = runtime.milliseconds() + 100;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing
-        }
-
-        // start thrower for 2 seconds.
-        startThrower();
-
-        targetEnd = runtime.milliseconds() + 2200;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing
-        }
-        // ElapsedTime endtime = runtime.
-        // Duration additionalTime = Duration.ofMillis(3000);
-        // turn the motors off.
         stopMotors();
     }
 
@@ -130,6 +87,11 @@ public class AutomodeAhh2 extends LinearOpMode {
     private void turnRightAndLeftStopper() {
         rightStopper.setPower(1.0);
         leftStopper.setPower(1.0);
+        return;
+    }
+    private void backMotors() {
+        rightFrontDrive.setPower(0.5);
+        leftFrontDrive.setPower(-0.5);
         return;
     }
 }
