@@ -3,12 +3,11 @@ package org.firstinspires.ftc.teamcode;
 import androidx.core.math.MathUtils;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.CRServo;
 import org.firstinspires.ftc.teamcode.Constants.TeleOpConstants;
-@TeleOp(name = "hunter5")
-public class simpleOpMode extends LinearOpMode {
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "hunter5")
+public class TeleOp extends LinearOpMode {
 
     DcMotor leftFrontDrive;
     DcMotor rightFrontDrive;
@@ -29,9 +28,6 @@ public class simpleOpMode extends LinearOpMode {
         leftStopper = hardwareMap.get(CRServo.class, "LS");
         rightStopper = hardwareMap.get(CRServo.class,"RS");
 
-//        leftStopper = hardwareMap.get(Servo.class, "LS");
-//        rightStopper = hardwareMap.get(Servo.class, "RS");
-
         telemetry.addData("Status:", "Initialized");
         telemetry.update();
 
@@ -40,10 +36,10 @@ public class simpleOpMode extends LinearOpMode {
         thrower.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         waitForStart();
-
-        float throwerSpeed = 0;
-        float rightSpeed = 0;
-        float leftSpeed = 0;
+        long startTime = System.currentTimeMillis();
+        float throwerSpeed;
+        float rightSpeed;
+        float leftSpeed;
         boolean slowMode = false;
         throwerSpeed = TeleOpConstants.THROWER_POWER;
         while (opModeIsActive()) {
@@ -99,6 +95,10 @@ public class simpleOpMode extends LinearOpMode {
             telemetry.addData("direction:", gamepad1.left_stick_x);
             telemetry.addData("firing", firing);
             telemetry.update();
+            if (System.currentTimeMillis() - startTime > 120000){
+                break;
+            }
+
         }
     }
     public void fire() {
