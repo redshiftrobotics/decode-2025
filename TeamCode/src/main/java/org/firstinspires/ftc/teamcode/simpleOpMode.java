@@ -98,6 +98,7 @@ public class simpleOpMode extends LinearOpMode {
             telemetry.addData("leftSpeed:", leftSpeed);
             telemetry.addData("direction:", gamepad1.left_stick_x);
             telemetry.addData("firing", firing);
+            telemetry.update();
         }
     }
     public void fire() {
