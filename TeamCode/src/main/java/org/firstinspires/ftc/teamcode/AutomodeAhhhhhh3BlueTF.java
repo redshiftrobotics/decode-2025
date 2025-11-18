@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Automode2")
-public class AutomodeAhh2 extends LinearOpMode {
+@Autonomous(name = "Automode3BlueFar")
+public class Automode3BlueFar extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -16,9 +16,9 @@ public class AutomodeAhh2 extends LinearOpMode {
 
     private DcMotor thrower;
 
-    //private CRServo rightStopper;
+    CRServo leftStopper;
+    CRServo rightStopper;
 
-    //private CRServo leftStopper;
 
 
     @Override
@@ -27,99 +27,68 @@ public class AutomodeAhh2 extends LinearOpMode {
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
         thrower = hardwareMap.get(DcMotor.class, "T");
-        //rightStopper = hardwareMap.get(CRServo.class, "RS");
-       // leftStopper = hardwareMap.get(CRServo.class, "LS");
+        leftStopper = hardwareMap.get(CRServo.class, "LS");
+        rightStopper = hardwareMap.get(CRServo.class,"RS");
 
         // Wait for motors to start
         waitForStart();
-
 
         // turn the motors on.
         startMotors();
 
 
         // go forward for 1 seconds.
-        double targetEnd = runtime.milliseconds() + 1000;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
-        // ElapsedTime endtime = runtime.
-        // Duration additionalTime = Duration.ofMillis(3000);
-        // turn the motors off.
-        stopMotors();
-
-        // turn left for 1.3 seconds.
-        turnMotorsRight();
-
-        targetEnd = runtime.milliseconds() + 1300;
+        double targetEnd = runtime.milliseconds() + 1500;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
-        // go forward for 0.5 seconds.
-        startMotors();
-
-        targetEnd = runtime.milliseconds() + 500;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
-
-        // turn right for 1 second.
         turnMotorsLeft();
 
-        targetEnd = runtime.milliseconds() + 980;
+        targetEnd = runtime.milliseconds() + 1000;
         while (runtime.milliseconds() < targetEnd) {
-            // do nothing
+            // do nothing.
         }
 
-        // go forward for 250 milliseconds.
         startMotors();
 
-        targetEnd = runtime.milliseconds() + 150;
+        targetEnd = runtime.milliseconds() + 650; // change this at the last second. Need to test
         while (runtime.milliseconds() < targetEnd) {
-            // do nothing
+            // do nothing.
         }
 
-        // start thrower for 150 milliseconds.
         startThrower();
 
         targetEnd = runtime.milliseconds() + 2500;
         while (runtime.milliseconds() < targetEnd) {
-            //startRightAndLeftStopper();
-        }
-        // ElapsedTime endtime = runtime.
-        // Duration additionalTime = Duration.ofMillis(3000);
-        // turn the motors off.
-        stopMotors();
-        
-        targetEnd = runtime.milliseconds() + 1000;
-        while (runtime.milliseconds() < targetEnd) {
-            
-        }
-        backMotorLeft();
-
-        targetEnd = runtime.milliseconds() + 350;
-        while (runtime.milliseconds() < targetEnd) {
-            
+           fire();
+           fire();
+           fire();
         }
 
         backMotors();
 
-        targetEnd = runtime.milliseconds() + 500;
+        targetEnd = runtime.milliseconds() + 600;
         while (runtime.milliseconds() < targetEnd) {
-            
+            // do nothing.
         }
 
-        backMotorRight();
+        backMotorLeft();
 
-        targetEnd = runtime.milliseconds() + 1100;
+        targetEnd = runtime.milliseconds() + 600;
         while (runtime.milliseconds() < targetEnd) {
-
+            // do nothing.
         }
 
-        stopMotors();
+        backMotors();
 
+        targetEnd= runtime.milliseconds() + 1000;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
 
+        // turn the motors off.
+        stopMotors();   
 
     }
 
@@ -148,20 +117,19 @@ public class AutomodeAhh2 extends LinearOpMode {
         rightFrontDrive.setPower(0.0);
         return;
     }
+
     private void turnMotorsLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.8);
         return;
     }
+
     private void startThrower() {
-        thrower.setPower(2.0);
+
+        thrower.setPower(0.63);
         return;
     }
-    //private void startRightAndLeftStopper() {
-     //   rightStopper.setPower();
-      //  leftStopper.setPower();
-       // return;
-    //}
+
     private void backMotorLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(-0.8);
@@ -176,8 +144,16 @@ public class AutomodeAhh2 extends LinearOpMode {
         leftFrontDrive.setPower(0.5);
         rightFrontDrive.setPower(-0.5);
         return;
+
     }
+
+    private void fire() {
+        rightStopper.setPower(-1);
+        leftStopper.setPower(1);
+    }
+
 }
+
 
 
 
