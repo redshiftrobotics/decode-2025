@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 @Autonomous(name = "Automode1")
-public class Automode1 extends LinearOpMode {
+public class Automode1  extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
 

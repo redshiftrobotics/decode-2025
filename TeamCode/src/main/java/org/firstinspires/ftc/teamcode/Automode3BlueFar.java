@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Automode6RedClose")
-public class Automode6RedClose extends LinearOpMode {
+@Autonomous(name = "Automode3BlueFar")
+public class Automode3BlueFar extends LinearOpMode {
 
     private final ElapsedTime runtime = new ElapsedTime();
 
@@ -16,9 +16,10 @@ public class Automode6RedClose extends LinearOpMode {
 
     private DcMotor thrower;
 
-    private CRServo rightStopper;
+    CRServo leftStopper;
+    CRServo rightStopper;
 
-    private CRServo leftStopper;
+
 
     @Override
     public void runOpMode() {
@@ -26,39 +27,70 @@ public class Automode6RedClose extends LinearOpMode {
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
         thrower = hardwareMap.get(DcMotor.class, "T");
-        rightStopper = hardwareMap.get(CRServo.class, "RS");
         leftStopper = hardwareMap.get(CRServo.class, "LS");
+        rightStopper = hardwareMap.get(CRServo.class,"RS");
 
-        //wait for motors to start.
+        // Wait for motors to start
         waitForStart();
-        //turn the motors on.
-        
-        startThrower();
-        
-        double targetEnd = runtime.milliseconds() + 2100;
+
+        // turn the motors on.
+        startMotors();
+
+
+        // go forward for 1 seconds.
+        double targetEnd = runtime.milliseconds() + 1800;
         while (runtime.milliseconds() < targetEnd) {
-            fire();
-
-            fire();
-
-            fire();
+            // do nothing.
         }
 
-        backMotorRight();
+        turnMotorsLeft();
 
-        targetEnd = runtime.milliseconds() + 1100;
+        targetEnd = runtime.milliseconds() + 990;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
+
+        startMotors();
+
+        targetEnd = runtime.milliseconds() + 450; // change this at the last second. Need to test
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
+
+        startThrower();
+
+        targetEnd = runtime.milliseconds() + 2500;
+        while (runtime.milliseconds() < targetEnd) {
+           fire();
+           fire();
+           fire();
+        }
+
+        backMotors();
+
+        targetEnd = runtime.milliseconds() + 600;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
+
+        backMotorLeft();
+
+        targetEnd = runtime.milliseconds() + 550;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
         backMotors();
 
-        targetEnd = runtime.milliseconds() + 1100;
+        targetEnd= runtime.milliseconds() + 1000;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
-        stopMotors();
+        // turn the motors off.
+        stopMotors();   
+
+    }
 
 
     public static void waitSeconds(double seconds) {
@@ -75,7 +107,6 @@ public class Automode6RedClose extends LinearOpMode {
         return;
     }
 
-    
     private void stopMotors() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.0);
@@ -95,7 +126,7 @@ public class Automode6RedClose extends LinearOpMode {
 
     private void startThrower() {
 
-        thrower.setPower(0.63);
+        thrower.setPower(0.625);
         return;
     }
 
@@ -115,9 +146,14 @@ public class Automode6RedClose extends LinearOpMode {
         return;
 
     }
+
     private void fire() {
         rightStopper.setPower(-1);
         leftStopper.setPower(1);
-        return;
     }
+
 }
+
+
+
+

@@ -40,9 +40,7 @@ public class Automode2 extends LinearOpMode {
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
-       
 
-        
 
         stopMotors();
     }
@@ -89,6 +87,7 @@ public class Automode2 extends LinearOpMode {
         leftStopper.setPower(1.0);
         return;
     }
+
     private void backMotors() {
         rightFrontDrive.setPower(0.5);
         leftFrontDrive.setPower(-0.5);
