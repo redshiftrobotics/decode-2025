@@ -95,7 +95,7 @@ public class TeleOp extends LinearOpMode {
             telemetry.addData("direction:", gamepad1.left_stick_x);
             telemetry.addData("firing", firing);
             telemetry.update();
-            if (System.currentTimeMillis() - startTime > 120000){
+            if (System.currentTimeMillis() - startTime > 119500){
                 break;
             }
 
