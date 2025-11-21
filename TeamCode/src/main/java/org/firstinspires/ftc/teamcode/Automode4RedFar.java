@@ -38,14 +38,14 @@ public class Automode4RedFar extends LinearOpMode {
 
 
         // go forward for 1 seconds.
-        double targetEnd = runtime.milliseconds() + 1950;
+        double targetEnd = runtime.milliseconds() + 2100;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
         turnMotorsRight();
 
-        targetEnd = runtime.milliseconds() + 850;
+        targetEnd = runtime.milliseconds() + 750;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -77,7 +77,7 @@ public class Automode4RedFar extends LinearOpMode {
 
         backMotorRight();
 
-        targetEnd = runtime.milliseconds() + 450;
+        targetEnd = runtime.milliseconds() + 550;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -127,14 +127,14 @@ public class Automode4RedFar extends LinearOpMode {
     }
 
     private void startThrower() {
-        thrower.setPower(0.625);
+        thrower.setPower(0.613);
         return;
     }
 
     private void backMotorLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(-0.8);
-        return;
+        return; 
     }
     private void backMotorRight() {
         leftFrontDrive.setPower(0.8);
