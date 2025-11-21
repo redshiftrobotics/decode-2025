@@ -35,25 +35,38 @@ public class Automode6RedClose extends LinearOpMode {
 
         startThrower();
 
-        double targetEnd = runtime.milliseconds() + 2100;
+        double targetEnd = runtime.milliseconds() + 2500;
         while (runtime.milliseconds() < targetEnd) {
-            fire();
+            waitfire();
 
             fire();
+
+            waitfire();
+
+            fire();
+
+            waitfire();
 
             fire();
         }
 
+        backMotors();
+
+        targetEnd = runtime.milliseconds() + 750;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
+
         backMotorRight();
 
-        targetEnd = runtime.milliseconds() + 1100;
+        targetEnd = runtime.milliseconds() + 350;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
         backMotors();
 
-        targetEnd = runtime.milliseconds() + 1100;
+        targetEnd = runtime.milliseconds() + 1300;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -97,7 +110,7 @@ public class Automode6RedClose extends LinearOpMode {
 
     private void startThrower() {
 
-        thrower.setPower(0.625);
+        thrower.setPower(0.62);
         return;
     }
 
@@ -120,6 +133,11 @@ public class Automode6RedClose extends LinearOpMode {
     private void fire() {
         rightStopper.setPower(-1);
         leftStopper.setPower(1);
+        return;
+    }
+    public void waitfire() {
+        rightStopper.setPower(0);
+        leftStopper.setPower(0);
         return;
     }
 }

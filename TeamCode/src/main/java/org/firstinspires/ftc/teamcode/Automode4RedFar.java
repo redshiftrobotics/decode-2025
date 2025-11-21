@@ -6,9 +6,13 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Autonomous(name = "Automode4RedFar")
 public class Automode4RedFar extends LinearOpMode {
 
+    private static final Logger log = LoggerFactory.getLogger(Automode4RedFar.class);
     private final ElapsedTime runtime = new ElapsedTime();
 
     private DcMotor leftFrontDrive;
@@ -33,26 +37,33 @@ public class Automode4RedFar extends LinearOpMode {
         // Wait for motors to start
         waitForStart();
 
+        stopMotors();
+
+        double targetEnd = runtime.milliseconds() + 1100;
+        while (runtime.milliseconds() < targetEnd) {
+            // do nothing.
+        }
+
         // turn the motors on.
         startMotors();
 
 
         // go forward for 1 seconds.
-        double targetEnd = runtime.milliseconds() + 1950;
+        targetEnd = runtime.milliseconds() + 2400;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
         turnMotorsRight();
 
-        targetEnd = runtime.milliseconds() + 850;
+        targetEnd = runtime.milliseconds() + 650;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
         startMotors();
 
-        targetEnd = runtime.milliseconds() + 350;
+        targetEnd = runtime.milliseconds() + 150;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -61,30 +72,39 @@ public class Automode4RedFar extends LinearOpMode {
 
         targetEnd = runtime.milliseconds() + 2500;
         while (runtime.milliseconds() < targetEnd) {
-            fire();
+            waitfire();
+            waitfire();
 
             fire();
+
+            waitfire();
+            waitfire();
+
+            fire();
+
+            waitfire();
+            waitfire();
 
             fire();
         }
 
         backMotors();
 
-        targetEnd = runtime.milliseconds() + 600;
+        targetEnd = runtime.milliseconds() + 660;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
         backMotorRight();
 
-        targetEnd = runtime.milliseconds() + 450;
+        targetEnd = runtime.milliseconds() + 400;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
 
         backMotors();
 
-        targetEnd= runtime.milliseconds() + 1000;
+        targetEnd= runtime.milliseconds() + 1250;
         while (runtime.milliseconds() < targetEnd) {
             // do nothing.
         }
@@ -127,7 +147,7 @@ public class Automode4RedFar extends LinearOpMode {
     }
 
     private void startThrower() {
-        thrower.setPower(0.625);
+        thrower.setPower(0.61);
         return;
     }
 
@@ -150,6 +170,11 @@ public class Automode4RedFar extends LinearOpMode {
     public void fire() {
         rightStopper.setPower(-1);
         leftStopper.setPower(1);
+    }
+    public void waitfire() {
+        rightStopper.setPower(0);
+        leftStopper.setPower(0);
+        return;
     }
 
 }
