@@ -73,15 +73,12 @@ public class Automode4RedFar extends LinearOpMode {
         targetEnd = runtime.milliseconds() + 2500;
         while (runtime.milliseconds() < targetEnd) {
             sleep(250);
-
             fire();
-
             waitfire();
-
+            sleep(75);
             fire();
-
             waitfire();
-
+            sleep(75);
             fire();
         }
 
