@@ -37,10 +37,6 @@ public class Automode4RedFar extends LinearOpMode {
         // Wait for motors to start
         waitForStart();
 
-        stopMotors();
-
-        sleep(1100);
-
         // turn the motors on.
         startMotors();
 

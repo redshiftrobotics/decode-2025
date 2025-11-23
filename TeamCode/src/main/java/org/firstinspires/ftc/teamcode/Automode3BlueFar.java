@@ -37,16 +37,13 @@ public class Automode3BlueFar extends LinearOpMode {
         // Wait for motors to start
         waitForStart();
 
-        stopMotors();
-
-        sleep(1100);
 
         // turn the motors on.
         startMotors();
 
 
         // go forward for 1 seconds.
-        sleep(2900);
+        sleep(2700);
 
         turnMotorsLeft();
 
