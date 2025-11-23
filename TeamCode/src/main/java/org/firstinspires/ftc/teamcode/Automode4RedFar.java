@@ -46,7 +46,7 @@ public class Automode4RedFar extends LinearOpMode {
 
 
         // go forward for 1 seconds.
-        sleep(2600);
+        sleep(2900);
 
         turnMotorsRight();
 
