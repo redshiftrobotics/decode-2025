@@ -46,7 +46,7 @@ public class TeleOp extends LinearOpMode {
         float rightSpeed;
         float leftSpeed;
         boolean slowMode = false;
-        throwerSpeed = TeleOpConstants.THROWER_POWER + 0.04F;
+        throwerSpeed = TeleOpConstants.THROWER_POWER + 0.03F;
         leftLED.setPosition(0);
         rightLED.setPosition(0);
         while (opModeIsActive()) {
@@ -59,7 +59,7 @@ public class TeleOp extends LinearOpMode {
                 leftSpeed = leftSpeed + gamepad1.left_stick_x;
             }
             if (gamepad1.xWasPressed()){
-                throwerSpeed = TeleOpConstants.THROWER_POWER + 0.04F;
+                throwerSpeed = TeleOpConstants.THROWER_POWER + 0.03F;
             }
             if(gamepad1.bWasPressed()){
                 throwerSpeed = 0;
