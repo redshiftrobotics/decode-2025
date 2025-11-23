@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "Automode5BlueClose")
@@ -19,7 +20,8 @@ public class Automode5BlueClose extends LinearOpMode {
     CRServo rightStopper;
 
     CRServo leftStopper;
-
+    Servo rightLED;
+    Servo leftLED;
     @Override
     public void runOpMode() {
 
@@ -28,35 +30,37 @@ public class Automode5BlueClose extends LinearOpMode {
         thrower = hardwareMap.get(DcMotor.class, "T");
         rightStopper = hardwareMap.get(CRServo.class, "RS");
         leftStopper = hardwareMap.get(CRServo.class, "LS");
+        rightLED = hardwareMap.get(Servo.class,"RLED");
+        leftLED = hardwareMap.get(Servo.class,"LLED");
 
         //wait for motors to start.
         waitForStart();
         //turn the motors on.
-
+        rightLED.setPosition(0);
+        leftLED.setPosition(0);
         startThrower();
 
-        double targetEnd = runtime.milliseconds() + 2100;
-        while (runtime.milliseconds() < targetEnd) {
-            fire();
-
-            fire();
-
-            fire();
-        }
-
-        backMotorLeft();
-
-        targetEnd = runtime.milliseconds() + 1100;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(4000);
+        fire();
+        sleep(2500);
+        fire();
+        sleep(2500);
+        fire();
+        sleep(2500);
+        fire();
+        sleep(2500);
 
         backMotors();
 
-        targetEnd = runtime.milliseconds() + 1100;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(750);
+
+        backMotorLeft();
+
+        sleep(350);
+
+        backMotors();
+
+        sleep(1300);
 
         stopMotors();
 
@@ -64,68 +68,49 @@ public class Automode5BlueClose extends LinearOpMode {
 
 
 
-        public static void waitSeconds(double seconds) {
-            try {
-                Thread.sleep(Math.round(seconds * 1000.0));
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        private void startMotors() {
-            leftFrontDrive.setPower(-0.5);
-            rightFrontDrive.setPower(0.5);
-            return;
-        }
-
-
-        private void stopMotors() {
-            leftFrontDrive.setPower(0.0);
-            rightFrontDrive.setPower(0.0);
-            return;
-        }
-        private void turnMotorsRight() {
-            leftFrontDrive.setPower(-0.8);
-            rightFrontDrive.setPower(0.0);
-            return;
-        }
-
-        private void turnMotorsLeft() {
-            leftFrontDrive.setPower(0.0);
-            rightFrontDrive.setPower(0.8);
-            return;
-        }
-
-        private void startThrower() {
-
-            thrower.setPower(0.625);
-            return;
-        }
-
-        private void backMotorLeft() {
-            leftFrontDrive.setPower(0.0);
-            rightFrontDrive.setPower(-0.8);
-            return;
-        }
-        private void backMotorRight() {
-            leftFrontDrive.setPower(0.8);
-            rightFrontDrive.setPower(0.0);
-            return;
-        }
-        private void backMotors() {
-            leftFrontDrive.setPower(0.5);
-            rightFrontDrive.setPower(-0.5);
-            return;
-
-        }
-        private void fire() {
-            rightStopper.setPower(-1);
-            leftStopper.setPower(1);
-            return;
-        }
-        private void waitfire() {
-            rightStopper.setPower(0.0);
-            leftStopper.setPower(0.0);
-            return;
-        }
+    private void startMotors() {
+        leftFrontDrive.setPower(-0.5);
+        rightFrontDrive.setPower(0.5);
+        return;
     }
+
+
+    private void stopMotors() {
+        leftFrontDrive.setPower(0.0);
+        rightFrontDrive.setPower(0.0);
+    }
+    private void turnMotorsRight() {
+        leftFrontDrive.setPower(-0.8);
+        rightFrontDrive.setPower(0.0);
+    }
+
+    private void turnMotorsLeft() {
+        leftFrontDrive.setPower(0.0);
+        rightFrontDrive.setPower(0.8);
+    }
+
+    private void startThrower() {
+        thrower.setPower(Constants.TeleOpConstants.THROWER_POWER);
+    }
+
+    private void backMotorLeft() {
+        leftFrontDrive.setPower(0.0);
+        rightFrontDrive.setPower(-0.8);
+    }
+    private void backMotorRight() {
+        leftFrontDrive.setPower(0.8);
+        rightFrontDrive.setPower(0.0);
+    }
+    private void backMotors() {
+        leftFrontDrive.setPower(0.5);
+        rightFrontDrive.setPower(-0.5);
+
+    }
+    public void fire() {
+        rightStopper.setPower(-1);
+        leftStopper.setPower(1);
+        sleep(Constants.TeleOpConstants.STOPPER_DELAY);
+        rightStopper.setPower(0);
+        leftStopper.setPower(0);
+    }
+}

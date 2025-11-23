@@ -6,9 +6,13 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Autonomous(name = "Automode3BlueFar")
 public class Automode3BlueFar extends LinearOpMode {
 
+    private static final Logger log = LoggerFactory.getLogger(Automode4RedFar.class);
     private final ElapsedTime runtime = new ElapsedTime();
 
     private DcMotor leftFrontDrive;
@@ -33,123 +37,95 @@ public class Automode3BlueFar extends LinearOpMode {
         // Wait for motors to start
         waitForStart();
 
+        stopMotors();
+
+        sleep(1100);
+
         // turn the motors on.
         startMotors();
 
 
         // go forward for 1 seconds.
-        double targetEnd = runtime.milliseconds() + 1800;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(2900);
 
         turnMotorsLeft();
 
-        targetEnd = runtime.milliseconds() + 990;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(650);
 
         startMotors();
 
-        targetEnd = runtime.milliseconds() + 450; // change this at the last second. Need to test
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(150);
 
         startThrower();
-
-        targetEnd = runtime.milliseconds() + 2500;
-        while (runtime.milliseconds() < targetEnd) {
-           fire();
-           fire();
-           fire();
-        }
+        stopMotors();
+        sleep(2500);
+        fire();
+        sleep(2500);
+        fire();
+        sleep(2500);
+        fire();
+        sleep(1000);
 
         backMotors();
 
-        targetEnd = runtime.milliseconds() + 600;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(650);
 
         backMotorLeft();
 
-        targetEnd = runtime.milliseconds() + 550;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(400);
 
         backMotors();
 
-        targetEnd= runtime.milliseconds() + 1000;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(1250);
 
         // turn the motors off.
-        stopMotors();   
+        stopMotors();
 
     }
 
 
-    public static void waitSeconds(double seconds) {
-        try {
-            Thread.sleep(Math.round(seconds * 1000.0));
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
 
     private void startMotors() {
         leftFrontDrive.setPower(-0.5);
         rightFrontDrive.setPower(0.5);
-        return;
     }
 
     private void stopMotors() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.0);
-        return;
     }
     private void turnMotorsRight() {
         leftFrontDrive.setPower(-0.8);
         rightFrontDrive.setPower(0.0);
-        return;
     }
 
     private void turnMotorsLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.8);
-        return;
     }
 
     private void startThrower() {
-
-        thrower.setPower(0.625);
-        return;
+        thrower.setPower(Constants.TeleOpConstants.THROWER_POWER);
     }
 
     private void backMotorLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(-0.8);
-        return;
     }
     private void backMotorRight() {
         leftFrontDrive.setPower(0.8);
         rightFrontDrive.setPower(0.0);
-        return;
     }
     private void backMotors() {
         leftFrontDrive.setPower(0.5);
         rightFrontDrive.setPower(-0.5);
-        return;
-
     }
-
-    private void fire() {
+    public void fire() {
         rightStopper.setPower(-1);
         leftStopper.setPower(1);
+        sleep(Constants.TeleOpConstants.STOPPER_DELAY);
+        rightStopper.setPower(0);
+        leftStopper.setPower(0);
     }
 
 }
