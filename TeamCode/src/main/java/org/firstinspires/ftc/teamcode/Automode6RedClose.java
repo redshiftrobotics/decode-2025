@@ -47,6 +47,8 @@ public class Automode6RedClose extends LinearOpMode {
         sleep(2500);
         fire();
         sleep(2500);
+        fire();
+        sleep(2500);
 
         backMotors();
 
