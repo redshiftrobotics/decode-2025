@@ -65,6 +65,8 @@ public class Automode3BlueFar extends LinearOpMode {
         sleep(2500);
         fire();
         sleep(1000);
+        fire();
+        sleep(1000);
 
         backMotors();
 
