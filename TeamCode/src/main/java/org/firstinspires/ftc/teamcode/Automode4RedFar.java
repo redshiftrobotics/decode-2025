@@ -105,7 +105,7 @@ public class Automode4RedFar extends LinearOpMode {
     }
 
     private void startThrower() {
-        thrower.setPower(0.61);
+        thrower.setPower(Constants.TeleOpConstants.THROWER_POWER);
     }
 
     private void backMotorLeft() {
