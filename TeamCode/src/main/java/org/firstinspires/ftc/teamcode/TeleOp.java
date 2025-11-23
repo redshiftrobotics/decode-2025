@@ -5,6 +5,8 @@ import androidx.core.math.MathUtils;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.teamcode.Constants.TeleOpConstants;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "hunter5")
 public class TeleOp extends LinearOpMode {
@@ -14,7 +16,8 @@ public class TeleOp extends LinearOpMode {
     DcMotor thrower;
     CRServo leftStopper;
     CRServo rightStopper;
-
+    Servo rightLED;
+    Servo leftLED;
     public boolean firing = false;
     @Override
     public void runOpMode() {
@@ -27,13 +30,15 @@ public class TeleOp extends LinearOpMode {
         thrower = hardwareMap.get(DcMotor.class, "T");
         leftStopper = hardwareMap.get(CRServo.class, "LS");
         rightStopper = hardwareMap.get(CRServo.class,"RS");
-
-        telemetry.addData("Status:", "Initialized");
-        telemetry.update();
+        rightLED = hardwareMap.get(Servo.class,"RLED");
+        leftLED = hardwareMap.get(Servo.class,"LLED");
 
         leftFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         thrower.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        telemetry.addData("Status:", "Initialized");
+        telemetry.update();
 
         waitForStart();
         long startTime = System.currentTimeMillis();
@@ -42,6 +47,8 @@ public class TeleOp extends LinearOpMode {
         float leftSpeed;
         boolean slowMode = false;
         throwerSpeed = TeleOpConstants.THROWER_POWER;
+        leftLED.setPosition(0);
+        rightLED.setPosition(0);
         while (opModeIsActive()) {
             rightSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
             leftSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
