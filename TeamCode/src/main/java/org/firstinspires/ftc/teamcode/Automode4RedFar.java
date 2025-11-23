@@ -39,69 +39,44 @@ public class Automode4RedFar extends LinearOpMode {
 
         stopMotors();
 
-        double targetEnd = runtime.milliseconds() + 1100;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(1100);
 
         // turn the motors on.
         startMotors();
 
 
         // go forward for 1 seconds.
-        targetEnd = runtime.milliseconds() + 2400;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(2600);
 
         turnMotorsRight();
 
-        targetEnd = runtime.milliseconds() + 650;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(650);
 
         startMotors();
 
-        targetEnd = runtime.milliseconds() + 150;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(150);
 
         startThrower();
 
-        targetEnd = runtime.milliseconds() + 2500;
-        while (runtime.milliseconds() < targetEnd) {
-            sleep(250);
-            fire();
-            waitfire();
-            sleep(75);
-            fire();
-            waitfire();
-            sleep(75);
-            fire();
-        }
+        sleep(2500);
+        fire();
+        sleep(2500);
+        fire();
+        sleep(2500);
+        fire();
+        sleep(1000);
 
         backMotors();
 
-        targetEnd = runtime.milliseconds() + 660;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(650);
 
         backMotorRight();
 
-        targetEnd = runtime.milliseconds() + 400;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(400);
 
         backMotors();
 
-        targetEnd= runtime.milliseconds() + 1250;
-        while (runtime.milliseconds() < targetEnd) {
-            // do nothing.
-        }
+        sleep(1250);
 
         // turn the motors off.
         stopMotors();   
@@ -109,66 +84,48 @@ public class Automode4RedFar extends LinearOpMode {
     }
 
 
-    public static void waitSeconds(double seconds) {
-        try {
-            Thread.sleep(Math.round(seconds * 1000.0));
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
 
     private void startMotors() {
         leftFrontDrive.setPower(-0.5);
         rightFrontDrive.setPower(0.5);
-        return;
     }
 
     private void stopMotors() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.0);
-        return;
     }
     private void turnMotorsRight() {
         leftFrontDrive.setPower(-0.8);
         rightFrontDrive.setPower(0.0);
-        return;
     }
 
     private void turnMotorsLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.8);
-        return;
     }
 
     private void startThrower() {
         thrower.setPower(0.61);
-        return;
     }
 
     private void backMotorLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(-0.8);
-        return;
     }
     private void backMotorRight() {
         leftFrontDrive.setPower(0.8);
         rightFrontDrive.setPower(0.0);
-        return;
     }
     private void backMotors() {
         leftFrontDrive.setPower(0.5);
         rightFrontDrive.setPower(-0.5);
-        return;
-
     }
     public void fire() {
         rightStopper.setPower(-1);
         leftStopper.setPower(1);
-    }
-    public void waitfire() {
+        sleep(Constants.TeleOpConstants.STOPPER_DELAY);
         rightStopper.setPower(0);
         leftStopper.setPower(0);
-        return;
     }
 
 }
