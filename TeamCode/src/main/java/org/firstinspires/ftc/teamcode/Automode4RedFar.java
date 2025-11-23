@@ -57,7 +57,7 @@ public class Automode4RedFar extends LinearOpMode {
         sleep(150);
 
         startThrower();
-
+        stopMotors();
         sleep(2500);
         fire();
         sleep(2500);
