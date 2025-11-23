@@ -40,12 +40,13 @@ public class Automode6RedClose extends LinearOpMode {
         leftLED.setPosition(0);
         startThrower();
 
-        sleep(2500);
+        sleep(4000);
         fire();
         sleep(2500);
         fire();
         sleep(2500);
         fire();
+        sleep(2500);
 
         backMotors();
 
