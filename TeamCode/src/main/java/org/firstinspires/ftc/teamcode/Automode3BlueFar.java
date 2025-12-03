@@ -43,11 +43,11 @@ public class Automode3BlueFar extends LinearOpMode {
 
 
         // go forward for 1 seconds.
-        sleep(2700);
+        sleep(2600);
 
         turnMotorsLeft();
 
-        sleep(800);
+        sleep(850);
 
         startMotors();
 
@@ -55,27 +55,27 @@ public class Automode3BlueFar extends LinearOpMode {
 
         startThrower();
         stopMotors();
-        sleep(3000);
+        sleep(2500);
         fire();
-        sleep(3000);
+        sleep(2500);
         fire();
-        sleep(3000);
+        sleep(2500);
         fire();
-        sleep(3000);
+        sleep(2500);
         fire();
-        sleep(3000);
+        sleep(1000);
 
         backMotors();
 
-        sleep(650);
+        sleep(450);
 
         backMotorLeft();
 
-        sleep(400);
+        sleep(500);
 
         backMotors();
 
-        sleep(1250);
+        sleep(1550);
 
         // turn the motors off.
         stopMotors();

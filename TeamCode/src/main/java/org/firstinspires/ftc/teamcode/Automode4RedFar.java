@@ -70,11 +70,11 @@ public class Automode4RedFar extends LinearOpMode {
 
         backMotorRight();
 
-        sleep(400);
+        sleep(300);
 
         backMotors();
 
-        sleep(1250);
+        sleep(1350);
 
         // turn the motors off.
         stopMotors();   
