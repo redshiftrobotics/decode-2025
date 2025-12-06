@@ -93,7 +93,7 @@ public class Automode6RedClose extends LinearOpMode {
     }
 
     private void startThrower() {
-        thrower.setPower(0.435);
+        thrower.setPower(0.43);
         return;
     }
 
