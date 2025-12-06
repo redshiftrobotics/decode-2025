@@ -51,7 +51,7 @@ public class Automode3BlueFar extends LinearOpMode {
 
         startMotors();
 
-        sleep(150);
+        sleep(300);
 
         startThrower();
         stopMotors();
@@ -61,7 +61,7 @@ public class Automode3BlueFar extends LinearOpMode {
         fire();
         sleep(2500);
         fire();
-        sleep(2500);
+        sleep(3700);
         fire();
         sleep(1000);
 
@@ -104,7 +104,8 @@ public class Automode3BlueFar extends LinearOpMode {
     }
 
     private void startThrower() {
-        thrower.setPower(Constants.TeleOpConstants.THROWER_POWER);
+        thrower.setPower(0.425);
+        return;
     }
 
     private void backMotorLeft() {

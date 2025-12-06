@@ -38,9 +38,6 @@ public class Automode6RedClose extends LinearOpMode {
         //turn the motors on.
         rightLED.setPosition(0);
         leftLED.setPosition(0);
-
-        backMotors();
-        sleep(50);
         startThrower();
 
         sleep(4000);
@@ -49,17 +46,17 @@ public class Automode6RedClose extends LinearOpMode {
         fire();
         sleep(2500);
         fire();
-        sleep(2500);
+        sleep(3600);
         fire();
         sleep(2500);
 
         backMotors();
 
-        sleep(850);
+        sleep(950);
 
         backMotorRight();
 
-        sleep(330);
+        sleep(350);
 
         backMotors();
 
@@ -81,33 +78,39 @@ public class Automode6RedClose extends LinearOpMode {
     private void stopMotors() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.0);
+        return;
     }
     private void turnMotorsRight() {
         leftFrontDrive.setPower(-0.8);
         rightFrontDrive.setPower(0.0);
+        return;
     }
 
     private void turnMotorsLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.8);
+        return;
     }
 
     private void startThrower() {
-        thrower.setPower(Constants.TeleOpConstants.THROWER_POWER);
+        thrower.setPower(0.43);
+        return;
     }
 
     private void backMotorLeft() {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(-0.8);
+        return;
     }
     private void backMotorRight() {
         leftFrontDrive.setPower(0.8);
         rightFrontDrive.setPower(0.0);
+        return;
     }
     private void backMotors() {
         leftFrontDrive.setPower(0.5);
         rightFrontDrive.setPower(-0.5);
-
+        return;
     }
     public void fire() {
         rightStopper.setPower(-1);
