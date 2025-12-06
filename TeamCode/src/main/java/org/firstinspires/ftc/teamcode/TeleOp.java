@@ -5,6 +5,7 @@ import androidx.core.math.MathUtils;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Constants.TeleOpConstants;
@@ -19,6 +20,29 @@ public class TeleOp extends LinearOpMode {
     Servo rightLED;
     Servo leftLED;
     public boolean firing = false;
+    private int previousThrowerTicks = 0;
+    private long previousTime = System.currentTimeMillis();
+    public double getVelocity(DcMotor motor) {
+        int currentTicks = motor.getCurrentPosition();
+        long currentTime = System.currentTimeMillis();
+
+        // Calculate time difference in seconds
+        double dt = (currentTime - previousTime) / 1000.0;
+
+        // Calculate ticks change since the last check
+        double ticksChange = currentTicks - previousThrowerTicks; // or rightMotor for right velocity
+
+        // Update previous values for the next calculation
+        previousThrowerTicks = currentTicks;
+        previousTime = currentTime;
+
+        // Assuming motor is set to a known conversion factor for your robot
+        double ticksPerRevolution = motor.getMotorType().getTicksPerRev(); // Replace with actual ticks per revolution for your motor
+        double wheelCircumference = Math.PI * 3.78; // Replace with your wheel diameter in inches
+        double velocity = (ticksChange / ticksPerRevolution) * wheelCircumference / dt; // Velocity in inches/sec
+
+        return velocity;
+    }
     @Override
     public void runOpMode() {
 
@@ -27,7 +51,7 @@ public class TeleOp extends LinearOpMode {
 
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
-        thrower = hardwareMap.get(DcMotor.class, "T");
+        thrower = hardwareMap.get(DcMotorEx.class, "T");
         leftStopper = hardwareMap.get(CRServo.class, "LS");
         rightStopper = hardwareMap.get(CRServo.class,"RS");
         rightLED = hardwareMap.get(Servo.class,"RLED");
@@ -39,6 +63,7 @@ public class TeleOp extends LinearOpMode {
 
         telemetry.addData("Status:", "Initialized");
         telemetry.update();
+        VelocityPID velocityPID = new VelocityPID(0, 0, 0);
 
         waitForStart();
         long startTime = System.currentTimeMillis();
@@ -50,6 +75,10 @@ public class TeleOp extends LinearOpMode {
         leftLED.setPosition(0);
         rightLED.setPosition(0);
         while (opModeIsActive()) {
+            double setpoint = 2000; // Example desired velocity
+            double actualVelocity = getVelocity(thrower); // Replace this with actual sensor reading
+            throwerSpeed = (float)velocityPID.calculate(setpoint, actualVelocity);
+
             rightSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
             leftSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
             if (gamepad1.left_stick_x > 0){
