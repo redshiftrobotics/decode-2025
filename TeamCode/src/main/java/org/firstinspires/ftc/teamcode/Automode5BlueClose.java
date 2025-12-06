@@ -52,11 +52,11 @@ public class Automode5BlueClose extends LinearOpMode {
 
         backMotors();
 
-        sleep(750);
+        sleep(950);
 
         backMotorLeft();
 
-        sleep(350);
+        sleep(450);
 
         backMotors();
 
@@ -90,7 +90,8 @@ public class Automode5BlueClose extends LinearOpMode {
     }
 
     private void startThrower() {
-        thrower.setPower(Constants.TeleOpConstants.THROWER_POWER);
+        thrower.setPower(0.425);
+        return;
     }
 
     private void backMotorLeft() {
