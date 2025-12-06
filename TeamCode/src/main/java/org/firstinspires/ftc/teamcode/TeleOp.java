@@ -60,7 +60,7 @@ public class TeleOp extends LinearOpMode {
         leftFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFrontDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         thrower.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
+        thrower.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         telemetry.addData("Status:", "Initialized");
         telemetry.update();
         VelocityPID velocityPID = new VelocityPID(0, 0, 0);
@@ -71,7 +71,6 @@ public class TeleOp extends LinearOpMode {
         float rightSpeed;
         float leftSpeed;
         boolean slowMode = false;
-        throwerSpeed = TeleOpConstants.THROWER_POWER + 0.03F;
         leftLED.setPosition(0);
         rightLED.setPosition(0);
         while (opModeIsActive()) {
