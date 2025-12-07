@@ -60,7 +60,7 @@ public class Automode5BlueClose extends LinearOpMode {
 
         backMotors();
 
-        sleep(1300);
+        sleep(1000);
 
         stopMotors();
 
