@@ -45,7 +45,7 @@ public class Automode3BlueFar extends LinearOpMode {
 
 
         // go forward for 1 seconds.
-        sleep(2600);
+        sleep(2300);
 
         turnMotorsLeft();
 
