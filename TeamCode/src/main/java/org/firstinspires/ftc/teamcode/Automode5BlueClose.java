@@ -33,15 +33,14 @@ public class Automode5BlueClose extends LinearOpMode {
         leftStopper = hardwareMap.get(CRServo.class, "LS");
         rightLED = hardwareMap.get(Servo.class,"RLED");
         leftLED = hardwareMap.get(Servo.class,"LLED");
-        thrower.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //wait for motors to start.
+        thrower.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         waitForStart();
         //turn the motors on.
         rightLED.setPosition(0);
         leftLED.setPosition(0);
         startThrower();
 
-        sleep(6000);
+        sleep(7500);
         fire();
         sleep(2500);
         fire();
