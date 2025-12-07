@@ -51,7 +51,7 @@ public class TeleOp extends LinearOpMode {
         leftLED.setPosition(0);
         rightLED.setPosition(0);
         while (opModeIsActive()) {
-            double targetTicksPerSecond = 1200;
+            double targetTicksPerSecond = 1150;
             thrower.setVelocity(targetTicksPerSecond);
             telemetry.addData("status", "Velocity set to" + targetTicksPerSecond);
             rightSpeed = (gamepad1.right_trigger*gamepad1.right_trigger) - (gamepad1.left_trigger*gamepad1.left_trigger);
