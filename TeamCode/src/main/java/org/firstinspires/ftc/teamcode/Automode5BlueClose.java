@@ -41,7 +41,7 @@ public class Automode5BlueClose extends LinearOpMode {
         leftLED.setPosition(0);
         startThrower();
 
-        sleep(4000);
+        sleep(6000);
         fire();
         sleep(2500);
         fire();
