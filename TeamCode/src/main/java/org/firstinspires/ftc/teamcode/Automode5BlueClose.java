@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -15,7 +16,7 @@ public class Automode5BlueClose extends LinearOpMode {
     private DcMotor leftFrontDrive;
     private DcMotor rightFrontDrive;
 
-    private DcMotor thrower;
+    private DcMotorEx thrower;
 
     CRServo rightStopper;
 
@@ -27,12 +28,12 @@ public class Automode5BlueClose extends LinearOpMode {
 
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
-        thrower = hardwareMap.get(DcMotor.class, "T");
+        thrower = hardwareMap.get(DcMotorEx.class, "T");
         rightStopper = hardwareMap.get(CRServo.class, "RS");
         leftStopper = hardwareMap.get(CRServo.class, "LS");
         rightLED = hardwareMap.get(Servo.class,"RLED");
         leftLED = hardwareMap.get(Servo.class,"LLED");
-
+        thrower.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //wait for motors to start.
         waitForStart();
         //turn the motors on.
@@ -90,7 +91,7 @@ public class Automode5BlueClose extends LinearOpMode {
     }
 
     private void startThrower() {
-        thrower.setPower(0.425);
+        thrower.setVelocity(1150);
         return;
     }
 

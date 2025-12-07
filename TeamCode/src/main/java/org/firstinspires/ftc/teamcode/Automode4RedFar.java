@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ public class Automode4RedFar extends LinearOpMode {
     private DcMotor leftFrontDrive;
     private DcMotor rightFrontDrive;
 
-    private DcMotor thrower;
+    private DcMotorEx thrower;
 
     CRServo leftStopper;
     CRServo rightStopper;
@@ -30,13 +31,13 @@ public class Automode4RedFar extends LinearOpMode {
 
         leftFrontDrive = hardwareMap.get(DcMotor.class, "FL");
         rightFrontDrive = hardwareMap.get(DcMotor.class, "FR");
-        thrower = hardwareMap.get(DcMotor.class, "T");
+        thrower = hardwareMap.get(DcMotorEx.class, "T");
         leftStopper = hardwareMap.get(CRServo.class, "LS");
         rightStopper = hardwareMap.get(CRServo.class,"RS");
+        thrower.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Wait for motors to start
         waitForStart();
-
         // turn the motors on.
         startMotors();
 
@@ -103,7 +104,7 @@ public class Automode4RedFar extends LinearOpMode {
     }
 
     private void startThrower() {
-        thrower.setPower(Constants.TeleOpConstants.THROWER_POWER);
+        thrower.setVelocity(1150);
     }
 
     private void backMotorLeft() {
