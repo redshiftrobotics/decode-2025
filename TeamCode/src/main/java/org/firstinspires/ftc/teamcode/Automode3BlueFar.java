@@ -79,6 +79,10 @@ public class Automode3BlueFar extends LinearOpMode {
 
         sleep(1550);
 
+        turnMotorsRightIP();
+
+        sleep(500);
+
         // turn the motors off.
         stopMotors();
 
@@ -104,6 +108,17 @@ public class Automode3BlueFar extends LinearOpMode {
         leftFrontDrive.setPower(0.0);
         rightFrontDrive.setPower(0.8);
     }
+
+    private void turnMotorsRightIP() {
+        leftFrontDrive.setPower(-0.5);
+        rightFrontDrive.setPower(-0.5);
+    }
+
+    private void turnMotorsLeftIP() {
+        leftFrontDrive.setPower(0.5);
+        rightFrontDrive.setPower(0.5);
+    }
+        
 
     private void startThrower() {
         thrower.setVelocity(1150);
