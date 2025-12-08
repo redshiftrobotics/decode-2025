@@ -38,11 +38,12 @@ public class Automode5BlueClose extends LinearOpMode {
         //turn the motors on.
         rightLED.setPosition(0);
         leftLED.setPosition(0);
+
         startThrower();
 
-        sleep(7500);
+        sleep(7300);
         fire();
-        sleep(2500);
+        sleep(3600);
         fire();
         sleep(2500);
         fire();
